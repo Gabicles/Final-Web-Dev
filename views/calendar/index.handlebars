@@ -1,0 +1,16 @@
+<div class="calendar">
+  <h2>Comment Calendar</h2>
+    <table id="customers">
+      <tr>
+        <th>Comment Date</th>
+        <th>Comment Text</th>
+      </tr>
+    {{#each calendarDates}}
+    {{!-- <li class="calendar-content">{{this.commentDate}} <p>{{this.commentText}}</p></li> --}}
+      <tr>
+        <td>{{this.commentDate}}</td>
+        <td>{{this.commentText}}</td>
+      </tr>
+    {{/each}}
+</table>
+</div>

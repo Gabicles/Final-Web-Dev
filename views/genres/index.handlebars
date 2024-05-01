@@ -1,0 +1,15 @@
+<div class="genres">
+<h1>Genres</h1>
+<a href="/Genres/form">Add Genre</a>
+<div class="genres-container">
+{{#each genres}}
+<li class="genres-list">
+  {{!-- {{this.id}} -  --}}
+    <a class="genres-name" href="/Genres/edit?id={{this.id}}">
+  {{this.name}}
+    </a>
+  {{!-- <a href="/Genres/edit?id={{this.id}}">edit</a>/ --}}
+</li>
+{{/each}}
+</div>
+</div>

@@ -1,0 +1,88 @@
+<div class="form-container">
+  <!-- Title indicating whether it's for editing an existing game or creating a new one -->
+  <h1>{{#if game}}Edit{{else}}New{{/if}} Game</h1>
+  
+  <!-- Form for submitting game details -->
+  <form class="games-form" action="/games/upsert" role="form" method="post">
+    <div class="form-image-container">
+      <!-- CSRF token for security -->
+      <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+      
+      <!-- Display existing game image and title if editing -->
+      {{#if game}}
+        <div class="image-body">
+          <h2 style="margin: 5px auto;">{{game.title}}</h2>
+          <input type="hidden" name="id" value="{{game.id}}">
+          <img src={{game.imageUrl}} alt="" style="width: 100%;height:100%;min-height:400px;object-fit:cover;">
+        </div>
+      {{/if}}
+    </div>
+    
+    <!-- Form inputs for game details -->
+    <div class="form-inputs">
+      <div class="flex-1">
+        <!-- Input field for game title -->
+        <div class="input-container">
+          <label for="title">Title</label>
+          <input class="input" type="text" id="title" name="title" {{#if game}}value="{{game.title}}"{{/if}}>
+        </div>
+        
+        <!-- Input field for studio -->
+        <div class="input-container">
+          <label for="studio">Studio</label>
+          <input class="input" type="text" id="studio" name="studio" {{#if game}}value="{{game.studio}}"{{/if}}>
+        </div>
+        
+        <!-- Input field for release date -->
+        <div class="input-container">
+          <label for="release_date">Release Date</label>
+          <input class="input" type="text" id="release_date" name="releaseDate" {{#if game}} value="{{game.releaseDate}}"{{/if}}>
+        </div>
+        
+        <!-- Input field for description -->
+        <div class="input-container">
+          <label for="description">Description</label>
+          <textarea class="input" id="description" rows="5" name="description">{{#if game}}{{game.description}}{{/if}}</textarea>
+        </div>
+      </div>
+      
+      <div class="flex-1">
+        <!-- Input field for image URL -->
+        <div class="input-container">
+          <label for="image_url">Image URL</label>
+          <input class="input" type="text" id="image_url" name="imageUrl" {{#if game}}value="{{game.imageUrl}}"{{/if}}>
+        </div>
+        
+        <!-- Input field for status -->
+        <div class="input-container">
+          <label for="status">Status</label>
+          <select class="input" id="status" name="status">
+            <!-- Options for different status values -->
+            <option value="started" {{#if game.status}}selected{{/if}}>Started</option>
+            <option value="not started" {{#if game.status}}selected{{/if}}>Not Started</option>
+            <option value="finished" {{#if game.status}}selected{{/if}}>Finished</option>
+          </select>
+        </div>
+        
+        <!-- Input field for adding comments -->
+        <div class="input-container">
+          <!-- Display existing comments if available -->
+          {{#if comment}}
+            <ul>
+              <h3>Comments</h3>
+              {{#each comments}}
+                <li>{{this.commentText}} - {{this.commentDate}}</li>
+              {{/each}}
+            </ul>
+          {{/if}}
+          <!-- Textarea for adding a new comment -->
+          <label for="comment">Add Comment</label>
+          <textarea class="input" id="comment" rows="3" name="comment"></textarea>
+        </div>
+        
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

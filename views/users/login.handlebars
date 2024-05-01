@@ -1,0 +1,25 @@
+<div class="register">
+  <!-- Title for the login form -->
+  <h1>Login</h1>
+
+  <!-- Login form -->
+  <form class="register-form" action="/users/login" role="form" method="post">
+    <!-- CSRF token for security -->
+    <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+    
+    <!-- Input field for email -->
+    <div class="input-container">
+      <label for="email">Email</label>
+      <input class="input" type="email" id="email" name="email">
+    </div>
+    
+    <!-- Input field for password -->
+    <div class="input-container">
+      <label for="password">Password</label>
+      <input class="input" type="password" id="password" name="password">
+    </div>
+    
+    <!-- Submit button -->
+    <button type="submit" class="btn-primary">Submit</button>
+  </form>
+</div>

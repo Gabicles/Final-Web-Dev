@@ -1,0 +1,64 @@
+<div class="form-container">
+  <!-- Conditional heading based on whether it's an edit or new studio -->
+  <h1>{{#if studio}}Edit{{else}}New{{/if}} Studio</h1>
+  <!-- Form for adding or editing a studio -->
+  <form class="games-form" action="/studios/upsert" role="form" method="post">
+    <div class="form-image-container">
+      <!-- CSRF token for security -->
+      <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+      <!-- Display studio information if editing -->
+      {{#if studio}}
+        <div class="image-body">
+          <!-- Studio name -->
+          <h2 style="margin: 5px auto;">{{studio.name}}</h2>
+          <!-- Studio ID -->
+          <input type="hidden" name="id" value="{{studio.id}}">
+          <!-- Studio image -->
+          <img src={{studio.imageUrl}} alt="" style="width: 100%;height:100%;min-height:400px;object-fit:cover;">
+        </div>
+      {{/if}}
+    </div>
+    <div class="form-inputs">
+      <div class="flex-1">
+        <!-- Input for studio name -->
+        <div class="input-container">
+          <label for="title">Title</label>
+          <input class="input" type="text" id="name" name="name" {{#if studio}}value="{{studio.name}}"{{/if}}>
+        </div>
+        <!-- Textarea for studio description -->
+        <div class="input-container">
+          <label for="description">Description</label>
+          <textarea class="input" id="description" rows="5" name="description">{{#if studio}}{{studio.description}}{{/if}}</textarea>
+        </div>
+        <!-- List of games associated with the studio -->
+        <div class="input-container">
+          <label for="games">Games</label>
+          <div class="games-input">
+           {{#each games}}
+            <li>{{this.title}}</li>
+          {{/each}}
+        </div>
+        </div>
+      </div>
+      <div class="flex-1">
+        <!-- Input for studio status -->
+        <div class="input-container">
+          <label for="status">Status</label>
+          <select class="input" id="status" name="status">
+            <!-- Options for studio status -->
+            <option value="started" {{#if studio.status}}selected{{/if}}>Dislike</option>
+            <option value="not started" {{#if studio.status}}selected{{/if}}>Neutral</option>
+            <option value="finished" {{#if studio.status}}selected{{/if}}>Like</option>
+          </select>
+        </div>
+        <!-- Input for studio image URL -->
+        <div class="input-container">
+          <label for="image_url">Image URL</label>
+          <input class="input" type="text" id="image_url" name="imageUrl" {{#if studio}}value="{{studio.imageUrl}}"{{/if}}>
+        </div>
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

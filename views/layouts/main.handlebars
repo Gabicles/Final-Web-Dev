@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{title}}</title>
+    <!-- Styles -->
+    <style>
+      /* Global Reset */
+      *{
+        margin: 0px;
+        padding: 0px;
+      }
+
+      /* Navbar Styling */
+      .navbar {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        margin-right: 10px;
+      }
+      .navbar ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      .navbar li {
+        display: inline-block;
+        margin-right: 10px;
+      }
+      .navbar .btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+
+      /* Flash Message */
+      .flash {
+        background-color: #28a745;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      /* Body Styling */
+      .body {
+        min-height: calc(100vh - 80px);
+      }
+
+      /* Specific Page Styles */
+      /* Home Page */
+      .home {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        min-height: calc(100vh - 80px);
+      }
+      /* Register Page */
+      .register {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        min-height: calc(100vh - 80px);
+        gap: 20px;
+      }
+      .register-form {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        max-width: 450px;
+      }
+      .input-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: start;
+        gap: 5px;
+        margin-top: 10px;
+      }
+      .input-container label {
+        padding-left: 5px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .input {
+        width: 100%;
+        display: flex;
+        padding: 15px 0px;
+        border-radius: 24px;
+        border: 1px solid black;
+      }
+      .btn-primary {
+        width: 100%;
+        display: flex;
+        padding: 15px 20px;
+        border-radius: 24px;
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border: none;
+        margin: 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      /* Genres Page */
+      .genres {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        min-height: calc(100vh - 80px);
+        margin-top: 20px;
+      }
+      .genres h1 {
+        margin: 20px 0px;
+      }
+      .genres-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        gap: 20px;
+      }
+      .genres-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        color: black;
+      }
+      .genres-name:hover {
+        color:#007bff;
+        border-bottom: 1px solid #007bff;
+      }
+      /* Games Page */
+      .games {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        min-height: calc(100vh - 80px);
+        margin-top: 20px;
+        width: 100%;
+      }
+      .games h1 {
+        margin: 20px 0px;
+      }
+      .games-main {
+        display: flex;
+        justify-content: center;
+      }
+      .games-add {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        background-color: #808080;
+        padding: 50px;
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-top: 50px;
+        font-size: 150px;
+        font-weight: 800;
+        color: black;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+      }
+      .games-container {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        flex-wrap: wrap;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        gap: 20px;
+      }
+      .games-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        text-decoration: none;
+        width: 200px;
+        height: 300px;
+        max-width: 200px;
+      }
+      /* Form Container */
+      .form-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        min-height: calc(100vh - 80px);
+        margin-top: 20px;
+        width: 100%;
+      }
+      .games-form {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        width: 100%;
+      }
+      .form-inputs {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        width: 70%;
+      }
+      .form-image-container {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        width: 25%;
+      }
+      .image-body {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+      }
+      .flex-1 {
+        width: 50%;
+        padding: 20px;
+      }
+      .games-input {
+        border: 1px solid #808080 ;
+        border-radius: 24px;
+        min-height: 60px;
+        min-width: 100%;
+      }
+      .game-input-li {
+        text-decoration: none;
+      }
+      /* Calendar Page */
+      .calendar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        min-height: calc(100vh - 80px);
+      }
+      .calendar-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        border:1px solid black;
+        border-radius: 12px;
+      }
+      /* Table Styling */
+      #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      #customers tr:nth-child(even){
+        background-color: #f2f2f2;
+      }
+      #customers tr:hover {
+        background-color: #ddd;
+      }
+      #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #333;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Flash Messages -->
+    {{#if flash}}
+      <div class="flash">
+        <strong>{{flash.intro}}</strong> {{{flash.message}}}
+      </div>
+    {{/if}}
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <a href="/">Home</a>
+      <ul>
+        <li><a href="/games">Games</a></li>
+        <li><a href="/studios">Studios</a></li>
+        <li><a href="/genres">Genres</a></li>
+        <li><a href="/calendar">Calendar</a></li>
+        {{#if currentUser}}
+          <li>
+            <a href="/users/profile">Welcome {{currentUser.name}}</a>
+          </li>
+          <li>
+            <form action="/users/logout" role="form" method="post">
+              <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+              <button type="submit" class="btn">Logout</button>
+            </form>
+          </li>
+        {{else}}
+          <li>
+            <a href="/users/register">Register</a>
+          </li>
+          <li>
+            <a href="/users/login">Login</a>
+          </li>
+        {{/if}}
+      </ul>
+    </nav>
+
+    <!-- Body Content -->
+    <div class="body">
+      {{{body}}}
+    </div>
+  </body>
+</html>

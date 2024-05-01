@@ -1,0 +1,17 @@
+<!-- Form for adding or updating comments -->
+<h1>Comment</h1>
+
+<form action="/comments/upsert" role="form" method="post">
+  <!-- CSRF token for security -->
+  <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+  <!-- Hidden input field for comment ID -->
+  <input type="hidden" name="id" value="{{comment.id}}">
+  
+  <!-- Text area for entering comment text -->
+  <div>
+    <textarea rows="5" id="comment" name="comment">{{comment.comment}}</textarea>
+  </div>
+  
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

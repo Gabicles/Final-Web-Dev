@@ -1,0 +1,15 @@
+<div class="games">
+<h1>Games</h1>
+<div class="games-main">
+
+<a class="games-add" href="/games/form">+</a>
+<div class="games-container">
+{{#each games}}
+<li class="games-list">
+  {{!-- {{this.id}} - {{this.title}} --}}
+  <a href="/games/edit?id={{this.id}}"><img src={{this.imageUrl}} alt="" style="width: 200px;height:300px;object-fit:cover;"></a>
+</li>
+{{/each}}
+</div>
+</div>
+</div>

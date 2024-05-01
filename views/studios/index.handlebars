@@ -1,0 +1,15 @@
+<div class="games">
+  <h1>Studio Library || Studios</h1>
+  <div class="games-main">
+    <a class="games-add" href="/studios/form">+</a>
+    <div class="games-container">
+      {{#each studios}}
+        <li class="games-list">
+          <a href="/studios/edit?id={{this.id}}">
+            <img src={{this.imageUrl}} alt="" style="width: 200px;height:300px;object-fit:cover;">
+          </a>
+        </li>
+      {{/each}}
+    </div>
+  </div>
+</div>
